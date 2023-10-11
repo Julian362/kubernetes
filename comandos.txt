@@ -1,0 +1,50 @@
+docker tag inventory-front julian362/inventory-front:latest
+docker push julian362/inventory-front:latest
+
+
+docker tag querie-app julian362/querie-app:latest
+docker push julian362/querie-app:latest
+docker tag command-app julian362/command-app:latest
+docker push julian362/command-app:latest
+docker tag proxy-app julian362/proxy-app:latest
+docker push julian362/proxy-app:latest
+
+
+
+
+
+kubectl delete -f config.yaml
+kubectl delete -f rabbit.yaml
+kubectl delete -f postgres.yaml
+kubectl delete -f mongo.yaml
+kubectl delete -f back.yaml
+kubectl delete -f front.yaml
+kubectl delete -f back-ingress.yaml
+
+
+kubectl delete deployments --all --grace-period=0 --force
+kubectl delete statefulsets --all --grace-period=0 --force
+kubectl delete svc --all --grace-period=0 --force
+kubectl delete pv --all --grace-period=0 --force
+kubectl delete pvc --all --grace-period=0 --force
+kubectl delete pods --all --grace-period=0 --force
+
+kubectl apply -f config.yaml
+kubectl apply -f rabbit.yaml
+kubectl apply -f postgres.yaml
+kubectl apply -f mongo.yaml
+kubectl apply -f back.yaml
+kubectl apply -f front.yaml
+kubectl apply -f back-ingress.yaml
+
+minikube start --driver docker --static-ip 172.17.184.146
+
+
+kubectl get pods
+
+kubectl logs command-app-6c495b987c-kddz4
+
+minikube service list
+
+kubectl get pod command-app-7844c4c79d-5t6qz -o=jsonpath='{.metadata.namespace}' --template="{{.metadata.namespace}}"
+

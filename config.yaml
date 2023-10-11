@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-urls
+
+data:
+  MONGO_USER: root
+  MONGO_PASS: password
+  MONGO_URL: mongodb://root:password@mongo-service:27017/ddd_inventory?authSource=admin
+  RABBITMQ_HOST: amqp://root:password@rabbit-service:5672/
+  MONGO_HOST: "mongo-service"
+  RABBITMQ_USER: root
+  RABBITMQ_PASS: password
+  MONGO_DATABASE: ddd_inventory
+  POSTGRES_USER: root
+  POSTGRES_PASS: password
+  POSTGRES_DATABASE: inventory
+  POSTGRES_HOST: "postgres-service"
+  MONGO_NAME: ddd_inventory
+  # HOST_3000: "172.17.184.146:30000"
+  # HOST_3001: "172.17.184.146:30001"
+  # HOST_3002: "172.17.184.146:30002"
+  # HOST_81: "172.17.184.146:30081"
+  COMMAND: command.app
+  QUERIE: querie.app
+  PROXY: proxy.app
